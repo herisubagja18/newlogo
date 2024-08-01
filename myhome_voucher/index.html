@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>$tanggal $nama_agen i</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link rel="icon" href="../img/favicon.png" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.js"></script>
+    <style>
+      body {
+        color: #000000;
+        background-color: #ffffff;
+        font-size: 14px;
+        /* font-family: "Comic Sans MS", "Comic Sans", cursive; */
+        /* font-family: "Arial, Helvetica, sans-serif"; */
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        margin: 0px;
+        -webkit-print-color-adjust: exact;
+      }
+      table.voucher {
+        display: inline-block;
+        border: 2px solid black;
+        margin: 2px;
+      }
+      @page {
+        size: auto;
+        margin-left: 7mm;
+        margin-right: 3mm;
+        margin-top: 9mm;
+        margin-bottom: 3mm;
+      }
+      @media print {
+        table {
+          page-break-after: auto;
+        }
+        tr {
+          page-break-inside: avoid;
+          page-break-after: auto;
+        }
+        td {
+          page-break-inside: avoid;
+          page-break-after: auto;
+        }
+        thead {
+          display: table-header-group;
+        }
+        tfoot {
+          display: table-footer-group;
+        }
+      }
+      #num {
+        float: right;
+        display: inline-block;
+      }
+      .qrc {
+        width: 30px;
+        height: 30px;
+        margin-top: 1px;
+      }
+    </style>
+  </head>
+  <body onload="window.print()">
+    <style type="text/css">
+      .rotate {
+        vertical-align: bottom;
+        text-align: center;
+      }
+      .rotate span {
+        -ms-writing-mode: tb-rl;
+        -webkit-writing-mode: vertical-rl;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        white-space: nowrap;
+      }
+      .qrcode {
+        height: 60px;
+        width: 60px;
+      }
+
+      td > img {
+        height: 22px;
+        margin-left: 12px;
+      }
+    </style>
+
+    <!--PERBANYAK_AWAL-->
+    <!--JIKA_USERNAME_SAMA_AWAL-->
+
+    <table class="voucher" style="width: 180px">
+      <tbody>
+        <tr>
+          <td
+            class="rotate"
+            style="
+              font-weight: bold;
+              border-right: 1px solid black;
+              background-color: #faa125;
+              -webkit-print-color-adjust: exact;
+            "
+            rowspan="4"
+          >
+            <span style="color: #000000">Rp $harga</span>
+          </td>
+          <!-- <td style="font-weight: bold;font-size: 12px;" colspan="2">$nama_usaha</td> -->
+          <td style="font-weight: bold; font-size: 12px" colspan="2">
+            <img src="img/new_logo.png" alt="myhome" />
+          </td>
+          <td style="" rowspan="3">
+            <canvas class="qrcode" id="x$username"></canvas>
+          </td>
+        </tr>
+        <tr>
+          <td
+            style="
+              width: 100%;
+              color: #faa125;
+              font-weight: bold;
+              font-size: 12px;
+              text-align: center;
+            "
+          >
+            $username
+          </td>
+        </tr>
+        <tr>
+          <td style="font-size: 10px">Aktif: $nama_profil</td>
+        </tr>
+        <tr>
+          <td colspan="3" style="font-size: 10px">
+            <span style="font-size: 8px" id="num"
+              >$no | $nama_agen | $catatan</span
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      (function () {
+        var x$username = new QRious({
+          element: document.getElementById("x$username"),
+          value: "http://$dnsname/login?username=$username&password=$password",
+          foreground: "black",
+          size: "256",
+        });
+      })();
+    </script>
+    <!--JIKA_USERNAME_SAMA_AKHIR-->
+  </body>
+</html>
